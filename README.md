@@ -17,4 +17,4 @@
 ## For production 🏁
 1) Install deps using `yarn` (if not installed before)
 2) Build app using `yarn build`
-3) Run `node build/Index.js`
+3) Copy `./build` to production instance and run `node build/Index.js`
