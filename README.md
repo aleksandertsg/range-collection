@@ -1,6 +1,10 @@
 # Range-collection app
 
 ## For development
+* Recommendations:
+    * Turn on TSLint and point to configuration `./tsconfig.json` for consistent code style
+    * Use `yarn` as package manager
+    * Use node `v10.15.0` and up
 
 1) Install globally TypeScript and nodemon (`yarn global add typescript nodemon`)
 2) Install deps using `yarn`
