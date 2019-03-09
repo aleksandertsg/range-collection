@@ -9,10 +9,14 @@
     "concurrently": "^4.1.0"
   },
   "devDependencies": {
+    "@types/sinon": "^7.0.9",
     "@types/chai": "^4.1.7",
     "@types/mocha": "^5.2.6",
     "chai": "^4.2.0",
     "mocha": "^6.0.2",
+    "nyc": "^13.3.0",
+    "sinon": "^7.2.7",
+    "source-map-support": "^0.5.10",
     "ts-node": "^8.0.2",
     "tslint": "^5.13.1",
     "tslint-config-airbnb": "^5.11.1",
@@ -25,6 +29,18 @@
     "watch-node": "nodemon build/Index.js",
     "watch": "concurrently -k -p \"[{name}]\" -n \"TypeScript,Node\" -c \"cyan.bold,yellow.bold\" \"yarn run watch-ts\" \"yarn run watch-node\"",
     "tslint": "tslint -c tslint.json -p tsconfig.json",
-    "test": "mocha -r ts-node/register --timeout 15000 'tests/**/*spec.ts' --exit"
+    "test": "nyc --reporter=text mocha -r ts-node/register --timeout 15000 'tests/**/*spec.ts' --exit"
+  },
+  "nyc": {
+    "extension": [
+      ".ts"
+    ],
+    "exclude": [
+      "**/Index.ts",
+      "**/*.d.ts",
+      "**/*.spec.ts",
+      "**/*.js"
+    ],
+    "all": true
   }
 }
