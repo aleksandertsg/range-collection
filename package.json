@@ -1,0 +1,8 @@
+{
+  "name": "range-collection",
+  "version": "1.0.0",
+  "description": "simple range collection app",
+  "main": "src/Index.ts",
+  "author": "aleksandertsg",
+  "license": "MIT"
+}
