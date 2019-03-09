@@ -10,10 +10,11 @@ export default class RangeCollection {
     let r: number[] = []
 
     for (let i = 0; i < array.length; i++) {
-      if (r.length === 0) {
+      if (r.length === 0 || (array[i - 1]) === array[i] - 1) {
         r.push(array[i])
-      } else if ((array[i] + 1) !== array[i + 1]) {
-        r.push(array[i])
+      }
+
+      if ((array[i] + 1) !== array[i + 1]) {
         rc.push([...r])
 
         r = []
@@ -41,7 +42,7 @@ export default class RangeCollection {
 
   public print(): void {
     const ranges: string = this.createRangeCollection(this.numbers)
-      .map(r => `[${r[0]}, ${r[1] + 1})`)
+      .map(r => `[${r[0]}, ${[...r].pop() + 1})`)
       .join(' ')
 
     console.log(ranges)

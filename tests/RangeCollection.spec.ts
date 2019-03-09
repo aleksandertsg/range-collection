@@ -12,7 +12,7 @@ describe('RangeCollection tests', () => {
     rc = new RangeCollection()
   })
 
-  describe('createArrayInRange', () => {
+  describe('createArrayInRange [Private]', () => {
     it('Should create range with given start and end', () => {
       const range = rc['createArrayInRange'](1, 10)
 
@@ -35,6 +35,14 @@ describe('RangeCollection tests', () => {
       const range = rc['createArrayInRange'](1, -1)
 
       expect(range).to.deep.eq([])
+    })
+  })
+
+  describe('createRangeCollection [Private]', () => {
+    it('Should create range collection in case given array', () => {
+      const result = rc['createRangeCollection']([1, 2, 3, 5, 6, 7, 8, 100, 1001])
+
+      expect(result).to.deep.eq([[1, 2, 3], [5, 6, 7, 8], [100], [1001]])
     })
   })
 
@@ -81,31 +89,49 @@ describe('RangeCollection tests', () => {
   describe('print', () => {
     it('Should print out in correct format', () => {
       const consoleSpy = sinon.spy(console, 'log')
+      let callCount = 0
 
       rc.add([1, 5])
+      rc.print()
+      expect(consoleSpy.getCall(callCount++).args[0]).to.eq('[1, 5)')
+
       rc.add([10, 20])
+      rc.print()
+      expect(consoleSpy.getCall(callCount++).args[0]).to.eq('[1, 5) [10, 20)')
+
       rc.add([20, 20])
+      rc.print()
+      expect(consoleSpy.getCall(callCount++).args[0]).to.eq('[1, 5) [10, 20)')
+
       rc.add([20, 21])
+      rc.print()
+      expect(consoleSpy.getCall(callCount++).args[0]).to.eq('[1, 5) [10, 21)')
+
       rc.add([2, 4])
+      rc.print()
+      expect(consoleSpy.getCall(callCount++).args[0]).to.eq('[1, 5) [10, 21)')
+
       rc.add([3, 8])
+      rc.print()
+      expect(consoleSpy.getCall(callCount++).args[0]).to.eq('[1, 8) [10, 21)')
+
       rc.remove([10, 10])
+      rc.print()
+      expect(consoleSpy.getCall(callCount++).args[0]).to.eq('[1, 8) [10, 21)')
+
       rc.remove([10, 11])
+      rc.print()
+      expect(consoleSpy.getCall(callCount++).args[0]).to.eq('[1, 8) [11, 21)')
+
       rc.remove([15, 17])
+      rc.print()
+      expect(consoleSpy.getCall(callCount++).args[0]).to.eq('[1, 8) [11, 15) [17, 21)')
+
       rc.remove([3, 19])
       rc.print()
-
-      expect(consoleSpy.calledOnce).to.eq(true)
-      expect(consoleSpy.getCall(0).args[0]).to.eq('[1, 3) [19, 21)')
+      expect(consoleSpy.getCall(callCount).args[0]).to.eq('[1, 3) [19, 21)')
 
       consoleSpy.restore()
-    })
-  })
-
-  describe('createRangeCollection', () => {
-    it('Should create range collection in case given array test', () => {
-      const result = rc['createRangeCollection']([1, 2, 3, 5, 6])
-
-      expect(result).to.deep.eq([[1, 3], [5, 6]])
     })
   })
 })
