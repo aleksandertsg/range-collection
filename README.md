@@ -1,6 +1,6 @@
 # Range-collection app
 
-## For development
+## For development 👨‍💻
 * Recommendations:
     * Turn on TSLint and point to configuration `./tsconfig.json` for consistent code style
     * Use `yarn` as package manager
@@ -10,6 +10,10 @@
 2) Install deps using `yarn`
 3) Run `yarn watch`
 
-## For testing
+## For testing 👨‍🔬
 1) Install deps using `yarn` (if not installed before)
 2) Run `yarn test`
+
+## For production 🏁
+1) Install deps using `yarn build` (if not installed before)
+2) Run `node build/Index.js`
