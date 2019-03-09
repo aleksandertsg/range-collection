@@ -2,7 +2,8 @@
   "extends": "tslint-config-airbnb",
   "rules": {
     "semicolon": [true, "never"],
-    "trailing-comma": [true, {"multiline": "never", "singleline": "never"}]
+    "trailing-comma": [true, {"multiline": "never", "singleline": "never"}],
+    "no-increment-decrement": false
   },
   "linterOptions": {
     "exclude": ["node_modules/**/*.ts"]
